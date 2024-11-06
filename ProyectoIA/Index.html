@@ -12,7 +12,7 @@
             height: 100vh;
             margin: 0;
             background-color: #87CEEB;
-            flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
+            flex-direction: column;
         }
         #cameraContainer {
             width: 80%;
@@ -28,7 +28,7 @@
             object-fit: cover;
         }
         button {
-            margin-top: 20px; /* Espacio entre la cámara y el botón */
+            margin-top: 20px;
             padding: 10px 20px;
             font-size: 16px;
             background-color: #4CAF50;
@@ -40,6 +40,9 @@
         button:hover {
             background-color: #45a049;
         }
+        canvas {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -48,8 +51,10 @@
         <video id="video" autoplay></video>
     </div>
     <div>
-        <button>Capturar Foto</button>
+        <button id="captureButton">Capturar Foto</button>
     </div>
+
+    <canvas id="canvas"></canvas>
 
     <script>
         async function startCamera() {
@@ -62,6 +67,28 @@
                 alert("No se pudo acceder a la cámara.");
             }
         }
+
+        document.getElementById("captureButton").addEventListener("click", () => {
+            const video = document.getElementById("video");
+            const canvas = document.getElementById("canvas");
+            const context = canvas.getContext("2d");
+
+            // Establecer el tamaño del canvas igual al del video
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+
+            // Dibujar el fotograma del video en el canvas
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            // Convertir la imagen del canvas en un formato de imagen base64
+            const imageData = canvas.toDataURL("image/png");
+
+            // Crear un enlace de descarga para la imagen
+            const downloadLink = document.createElement("a");
+            downloadLink.href = imageData;
+            downloadLink.download = "foto.png"; // Nombre de la imagen
+            downloadLink.click(); // Simula el clic en el enlace para iniciar la descarga
+        });
 
         window.addEventListener("load", startCamera);
     </script>
