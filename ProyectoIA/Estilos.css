@@ -36,3 +36,22 @@ button:hover {
 canvas {
     display: none;
 }
+#countdown {
+    font-size: 50px; /* Aumenta el tamaño de la fuente */
+    font-weight: bold; /* Pone la fuente en negrita */
+    color: #ff0000; /* Cambia el color del texto a rojo (puedes usar cualquier color que prefieras) */
+    text-align: center; /* Centra el texto */
+    margin-top: 20px; /* Espaciado por encima */
+    font-family: Arial, sans-serif; /* Establece la fuente */
+    animation: fadeIn 1s ease-in-out; /* Efecto de animación */
+}
+
+/* Opcional: Agregar un efecto de animación para que los números aparezcan suavemente */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

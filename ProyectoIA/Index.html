@@ -13,6 +13,7 @@
     </div>
     <div>
         <button id="captureButton">Capturar Foto</button>
+        <div id="countdown"></div> <!-- Elemento para mostrar el contador -->
     </div>
 
     <canvas id="canvas"></canvas>
@@ -29,7 +30,23 @@
             }
         }
 
-        document.getElementById("captureButton").addEventListener("click", () => {
+        function startCountdown() {
+            let countdown = 3; // Contador de 3 segundos
+            const countdownElement = document.getElementById("countdown");
+            
+            const interval = setInterval(() => {
+                countdownElement.textContent = countdown; // Mostrar el contador
+                countdown--; // Decrementar el contador
+
+                if (countdown < 0) {
+                    clearInterval(interval); // Detener el contador
+                    capturePhoto(); // Capturar la foto después del contador
+                    countdownElement.textContent = "¡Sonrie!"; // Mensaje final
+                }
+            }, 1000); // Actualizar cada segundo
+        }
+
+        function capturePhoto() {
             const video = document.getElementById("video");
             const canvas = document.getElementById("canvas");
             const context = canvas.getContext("2d");
@@ -49,6 +66,10 @@
             downloadLink.href = imageData;
             downloadLink.download = "foto.png"; // Nombre de la imagen
             downloadLink.click(); // Simula el clic en el enlace para iniciar la descarga
+        }
+
+        document.getElementById("captureButton").addEventListener("click", () => {
+            startCountdown(); // Comienza el contador al hacer clic en el botón
         });
 
         window.addEventListener("load", startCamera);
