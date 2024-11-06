@@ -12,6 +12,7 @@
             height: 100vh;
             margin: 0;
             background-color: #87CEEB;
+            flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
         }
         #cameraContainer {
             width: 80%;
@@ -26,6 +27,19 @@
             height: 100%;
             object-fit: cover;
         }
+        button {
+            margin-top: 20px; /* Espacio entre la cámara y el botón */
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
@@ -34,9 +48,7 @@
         <video id="video" autoplay></video>
     </div>
     <div>
-        <button>
-            A
-        </button>
+        <button>Capturar Foto</button>
     </div>
 
     <script>
