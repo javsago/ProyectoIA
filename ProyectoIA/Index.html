@@ -21,13 +21,14 @@
         </div>
 
         <div class="right-container">
-            
             <!-- Slider de progreso -->
             <label for="slider1">Progreso:</label>
             <input type="range" id="slider1" min="0" max="100" value="50" step="1" disabled>
+
+            <canvas id="canvas" style="display: none;"></canvas> <!-- Canvas para imagen -->
+            <div id="output"></div> <!-- Donde mostramos la predicción -->
         </div>
     </div>
-    <canvas id="canvas" style="display: none;"></canvas>
 
     <!-- Script de carga del modelo IA -->
     <script src="model.js" defer></script>
